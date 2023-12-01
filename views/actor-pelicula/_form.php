@@ -1,5 +1,8 @@
 <?php
 
+use app\models\Actor;
+use app\models\Pelicula;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -12,9 +15,15 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'ACT_ID')->textInput() ?>
+    <?= $form->field($model, 'ACT_ID')->dropDownList(
+        ArrayHelper::map(Actor::find()->all(), 'ACT_ID', 'ACT_NOMBRE'),
+        ['prompt' >= 'Seleccione…']
+    ) ?>
 
-    <?= $form->field($model, 'PEL_ID')->textInput() ?>
+    <?= $form->field($model, 'PEL_ID')->dropDownList(
+        ArrayHelper::map(Pelicula::find()->all(), 'PEL_ID', 'PEL_NOMBRE'),
+        ['prompt' >= 'Seleccione…']
+    ) ?>
 
     <?= $form->field($model, 'APL_PAPEL')->textInput(['maxlength' => true]) ?>
 
