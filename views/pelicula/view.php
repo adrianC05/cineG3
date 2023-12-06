@@ -30,9 +30,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'PEL_ID',
-            'GEN_ID',
-            'DIR_ID',
-            'FOR_ID',
+            [
+                'label' => 'Actor',
+                'value' => $model->gEN->GEN_NOMBRE,
+            ],
+            [
+                'label' => 'Actor',
+                'value' => $model->dIR->DIR_NOMBRE,
+            ],
+            [
+                'label' => 'Actor',
+                'value' => $model->fOR->FOR_NOMBRE,
+            ],
             'PEL_NOMBRE',
             'PEL_COSTO',
             'PEL_FECHA_ESTRENO',

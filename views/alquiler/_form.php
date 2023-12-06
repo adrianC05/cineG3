@@ -1,5 +1,8 @@
 <?php
 
+use app\models\Pelicula;
+use app\models\Socio;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -12,9 +15,15 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'SOC_ID')->textInput() ?>
+    <?= $form->field($model, 'SOC_ID')->dropDownList(
+        ArrayHelper::map(Socio::find()->all(), 'SOC_ID', 'SOC_NOMBRE'),
+        ['prompt' >= 'Seleccione…']
+    ) ?>
 
-    <?= $form->field($model, 'PEL_ID')->textInput() ?>
+    <?= $form->field($model, 'PEL_ID')->dropDownList(
+        ArrayHelper::map(Pelicula::find()->all(), 'PEL_ID', 'PEL_NOMBRE'),
+        ['prompt' >= 'Seleccione…']
+    ) ?>
 
     <?= $form->field($model, 'ALQ_FECHA_DESDE')->textInput() ?>
 

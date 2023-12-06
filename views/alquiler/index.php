@@ -21,7 +21,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Alquiler', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -30,8 +31,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'ALQ_ID',
-            'SOC_ID',
-            'PEL_ID',
+            [
+                'label' => 'Socio',
+                'value' => 'sOC.SOC_NOMBRE',
+            ],
+            [
+                'label' => 'Pelicula',
+                'value' => 'pEL.PEL_NOMBRE',
+            ],
             'ALQ_FECHA_DESDE',
             'ALQ_FECHA_HASTA',
             //'ALQ_VALOR',
@@ -40,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Alquiler $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'ALQ_ID' => $model->ALQ_ID]);
-                 }
+                }
             ],
         ],
     ]); ?>
