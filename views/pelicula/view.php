@@ -45,7 +45,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'PEL_NOMBRE',
             'PEL_COSTO',
             'PEL_FECHA_ESTRENO',
-            'PEL_IMAGEN'
+            [
+                'label' => 'Imagen',
+                'format' => 'html',
+                'value' => function ($model) {
+                    return Html::img($model->PEL_IMAGEN, ['alt' => 'Imagen', 'width' => 100, 'height' => 100, 'class' => 'img-thumbnail']);
+                }
+            ],
         ],
     ]) ?>
 

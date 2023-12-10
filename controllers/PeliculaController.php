@@ -88,9 +88,7 @@ class PeliculaController extends Controller
     {
         $model = $this->findModel($PEL_ID);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'PEL_ID' => $model->PEL_ID]);
-        }
+        $this->subirImagen($model); // Le pasaremos toda la informacion al modelo y el se encargara de subir la imagen
 
         return $this->render('update', [
             'model' => $model,
@@ -106,7 +104,14 @@ class PeliculaController extends Controller
      */
     public function actionDelete($PEL_ID)
     {
-        $this->findModel($PEL_ID)->delete();
+        $model = $this->findModel($PEL_ID); // Almacenamos la información del registro en la variable $model
+
+        if (file_exists($model->PEL_IMAGEN)) // Verificamos si el archivo existe
+        {
+            unlink($model->PEL_IMAGEN); // Eliminamos el archivo
+        }
+
+        $model->delete();
 
         return $this->redirect(['index']);
     }
@@ -118,7 +123,7 @@ class PeliculaController extends Controller
 
         // add pagination
         $pagination = new Pagination([
-            'defaultPageSize' => 5,
+            'defaultPageSize' => 10,
             'totalCount' => $model->count(),
         ]);
 
@@ -164,9 +169,17 @@ class PeliculaController extends Controller
 
                     // Guardamos el archivo en la carpeta uploads
                     if ($model->ARCHIVO) {
+
+                        // Eliminamos el archivo anterior
+                        if (file_exists($model->PEL_IMAGEN)) // Verificamos si el archivo existe
+                        {
+                            unlink($model->PEL_IMAGEN); // Eliminamos el archivo
+                        }
+
+                        // Creamos la ruta donde se guardara el archivo
                         $rutaArchivo = 'uploads/' . time() . '_' . $model->ARCHIVO->baseName . '.' . $model->ARCHIVO->extension; // Creamos la ruta donde se guardara el archivo
 
-                        // Guardamos el archivo
+                        // Guardamos el archivo nuevo
                         if ($model->ARCHIVO->saveAs($rutaArchivo)) { // Guardamos el archivo
                             $model->PEL_IMAGEN = $rutaArchivo; // Guardamos la ruta en el campo de la base de datos
                         }

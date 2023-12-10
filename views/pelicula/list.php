@@ -6,7 +6,7 @@ use yii\widgets\LinkPager;
 
 ?>
 
-<h1>Peliculas Disponibles</h1>
+<h1 class="text-center p-4">Peliculas Disponibles</h1>
 
 <div class="row">
 
@@ -43,7 +43,7 @@ use yii\widgets\LinkPager;
         <div class="col-md-6">
             <div class="card bg-dark text-white m-3">
                 <div class="row no-gutters">
-                    <div class="col-md-6">
+                    <div class="col-md-6 ">
                         <img src="<?= Html::encode("{$pelicula->PEL_IMAGEN}") ?>" class="card-img h-100" alt="..."> <!-- Agregamos la clase h-100 para establecer la altura al 100% -->
                     </div>
                     <div class="col-md-6">
@@ -51,6 +51,7 @@ use yii\widgets\LinkPager;
                             <h5 class="card-title"><?= Html::encode("{$pelicula->PEL_NOMBRE}") ?></h5>
                             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                             <p class="card-text">Fecha de Estreno: <?= Html::encode("{$pelicula->PEL_FECHA_ESTRENO}") ?></p>
+                            <a href="<?= Yii::$app->urlManager->createUrl(['pelicula/view', 'PEL_ID' => $pelicula->PEL_ID]) ?>" class="btn btn-primary">Ver Pelicula</a>
                         </div>
                     </div>
                 </div>
