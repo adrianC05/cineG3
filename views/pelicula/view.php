@@ -45,6 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'PEL_NOMBRE',
             'PEL_COSTO',
             'PEL_FECHA_ESTRENO',
+            'PEL_IMAGEN'
         ],
     ]) ?>
 

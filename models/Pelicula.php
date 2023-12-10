@@ -23,6 +23,7 @@ use Yii;
  */
 class Pelicula extends \yii\db\ActiveRecord
 {
+    public $ARCHIVO; // Variable para guardar la imagen
     /**
      * {@inheritdoc}
      */
@@ -42,6 +43,7 @@ class Pelicula extends \yii\db\ActiveRecord
             [['PEL_COSTO'], 'number'],
             [['PEL_FECHA_ESTRENO'], 'safe'],
             [['PEL_NOMBRE'], 'string', 'max' => 60],
+            [['ARCHIVO'], 'file', 'extensions'=>'jpg,png'],
             [['DIR_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Director::class, 'targetAttribute' => ['DIR_ID' => 'DIR_ID']],
             [['FOR_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Formato::class, 'targetAttribute' => ['FOR_ID' => 'FOR_ID']],
             [['GEN_ID'], 'exist', 'skipOnError' => true, 'targetClass' => Genero::class, 'targetAttribute' => ['GEN_ID' => 'GEN_ID']],
@@ -61,6 +63,7 @@ class Pelicula extends \yii\db\ActiveRecord
             'PEL_NOMBRE' => 'Pel Nombre',
             'PEL_COSTO' => 'Pel Costo',
             'PEL_FECHA_ESTRENO' => 'Pel Fecha Estreno',
+            'ARCHIVO' => 'Pel Imagen',
         ];
     }
 

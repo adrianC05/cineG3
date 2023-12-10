@@ -43,6 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => 'fOR.FOR_NOMBRE',
             ],
             'PEL_NOMBRE',
+            'PEL_IMAGEN',
             //'PEL_COSTO',
             //'PEL_FECHA_ESTRENO',
             [

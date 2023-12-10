@@ -37,6 +37,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'PEL_FECHA_ESTRENO')->textInput() ?>
 
+    <?= $form->field($model, 'ARCHIVO')->fileInput() ?>
+
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

@@ -7,7 +7,8 @@ use app\models\PeliculaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii\web\UploadedFile; // Adjunta archivos
+use yii\data\Pagination; // Agregar paginación    
 /**
  * PeliculaController implements the CRUD actions for Pelicula model.
  */
@@ -69,13 +70,7 @@ class PeliculaController extends Controller
     {
         $model = new Pelicula();
 
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'PEL_ID' => $model->PEL_ID]);
-            }
-        } else {
-            $model->loadDefaultValues();
-        }
+        $this->subirImagen($model); // Le pasaremos toda la informacion al modelo y el se encargara de subir la imagen
 
         return $this->render('create', [
             'model' => $model,
@@ -116,6 +111,30 @@ class PeliculaController extends Controller
         return $this->redirect(['index']);
     }
 
+    // List of all Pelicula models.
+    public function actionList()
+    {
+        $model = Pelicula::find();
+
+        // add pagination
+        $pagination = new Pagination([
+            'defaultPageSize' => 5,
+            'totalCount' => $model->count(),
+        ]);
+
+        // Order the results by name
+        $peliculas = $model->orderBy('PEL_NOMBRE')
+            ->offset($pagination->offset) // Range of data displayed
+            ->limit($pagination->limit) // Number of data per page
+            ->all();
+
+        //Returning the view
+        return $this->render('list', [
+            'peliculas' => $peliculas,
+            'pagination' => $pagination,
+        ]);
+    }
+
     /**
      * Finds the Pelicula model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
@@ -130,5 +149,36 @@ class PeliculaController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    // Upload image
+    protected function subirImagen(Pelicula $model)
+    {
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post())) {
+
+                $model->ARCHIVO = UploadedFile::getInstance($model, 'ARCHIVO'); // Obtenemos la instancia del archivo
+
+                //Validamos que el archivo exista y sea valido
+                if ($model->validate()) {
+
+                    // Guardamos el archivo en la carpeta uploads
+                    if ($model->ARCHIVO) {
+                        $rutaArchivo = 'uploads/' . time() . '_' . $model->ARCHIVO->baseName . '.' . $model->ARCHIVO->extension; // Creamos la ruta donde se guardara el archivo
+
+                        // Guardamos el archivo
+                        if ($model->ARCHIVO->saveAs($rutaArchivo)) { // Guardamos el archivo
+                            $model->PEL_IMAGEN = $rutaArchivo; // Guardamos la ruta en el campo de la base de datos
+                        }
+                    }
+                }
+                // Guardamos el registro en la base de datos
+                if ($model->save(false)) {
+                    return $this->redirect(['index']); // Redireccionamos a la vista index
+                }
+            }
+        } else {
+            $model->loadDefaultValues();
+        }
     }
 }
