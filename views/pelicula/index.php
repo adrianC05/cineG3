@@ -43,14 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => 'fOR.FOR_NOMBRE',
             ],
             'PEL_NOMBRE',
-            // Mostrar imagenes en el gridview
-            [
-                'label' => 'Imagen',
-                'format' => 'html',
-                'value' => function ($model) {
-                    return Html::img($model->PEL_IMAGEN, ['alt' => 'Imagen', 'width' => 100, 'height' => 100, 'class' => 'img-thumbnail']);
-                }
-            ],
+
             //'PEL_COSTO',
             //'PEL_FECHA_ESTRENO',
             [

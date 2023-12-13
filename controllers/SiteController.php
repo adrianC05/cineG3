@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Alquiler;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -9,6 +10,9 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Formato;
+use app\models\Genero;
+use app\models\Pelicula;
 
 class SiteController extends Controller
 {
@@ -61,9 +65,20 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        //return $this->render('index');
-        return $this->redirect(['pelicula/list']);
+        //invocar a la clase Pelicula, formato, Genero, Alquiler
+        $listaFormato = Formato::find()->all();
+        $listaPelicula = Pelicula::find()->all();
+        $listaGenero = Genero::find()->all();
+        $listaAlquiler = Alquiler::find()->all();
+
+        return $this->render('index', [
+            'listaFormato' => $listaFormato,
+            'listaPelicula' => $listaPelicula,
+            'listaGenero' => $listaGenero,
+            'listaAlquiler' => $listaAlquiler,
+        ]);
     }
+
 
     /**
      * Login action.

@@ -36,10 +36,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'PEL_COSTO')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'PEL_FECHA_ESTRENO')->textInput() ?>
-
-    <?= HTML::img($model->PEL_IMAGEN, ['alt' => 'Imagen', 'width' => 100, 'height' => 100, 'class' => 'img-thumbnail']) ?>
-    <?= $form->field($model, 'ARCHIVO')->fileInput() ?> <!--Cargar imagen-->
-
+    
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
