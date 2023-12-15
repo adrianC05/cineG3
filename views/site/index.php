@@ -7,7 +7,7 @@ use yii\widgets\LinkPager;
 ?>
 <div class="container">
 
-    <h1 class="text-center p-4">Peliculas Disponibles</h1>
+    <h1 class="text-center p-4">Alquiler de Peliculas</h1>
 
 
     <div class="pb-4">
