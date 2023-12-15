@@ -21,7 +21,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Actor Pelicula', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -29,15 +30,20 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'APL_ID',
-            'ACT_ID',
-            'PEL_ID',
+            [
+                'label' => 'Actor',
+                'value' => 'aCT.ACT_NOMBRE',
+            ],
+            [
+                'label' => 'Pelicula',
+                'value' => 'pEL.PEL_NOMBRE',
+            ],
             'APL_PAPEL',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, ActorPelicula $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'APL_ID' => $model->APL_ID]);
-                 }
+                }
             ],
         ],
     ]); ?>

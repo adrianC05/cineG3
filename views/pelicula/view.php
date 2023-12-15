@@ -35,11 +35,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => $model->gEN->GEN_NOMBRE,
             ],
             [
-                'label' => 'Actor',
+                'label' => 'Director',
                 'value' => $model->dIR->DIR_NOMBRE,
             ],
             [
-                'label' => 'Actor',
+                'label' => 'Formato',
                 'value' => $model->fOR->FOR_NOMBRE,
             ],
             'PEL_NOMBRE',
