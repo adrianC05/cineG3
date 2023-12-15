@@ -73,8 +73,8 @@ use yii\widgets\LinkPager;
 
     </div>
     <hr>
-    <form class="p-3">
-        <h2 class="text-center">Registro</h2>
+    <form class="p-3 bg-secondary" style="--bs-bg-opacity: .1;">
+        <h2 class="text-center"><strong>Registro</strong></h2>
         <div style="padding: 0 15% 0 15%;">
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Correo Electronico</label>
@@ -94,4 +94,33 @@ use yii\widgets\LinkPager;
 
     </form>
 
+
+
 </div>
+<hr>
+
+<footer class="text-center mt-5">
+    <div class="">
+        <h5 class="">Nuestras redes Sociales</h5>
+        <!-- Facebook -->
+        <i class="fab fa-facebook-f fa-2x mx-2"></i>
+
+        <!-- Twitter -->
+        <i class="fab fa-twitter fa-2x mx-2"></i>
+
+        <!-- Google -->
+        <i class="fab fa-google fa-2x mx-2"></i>
+
+        <!-- Instagram -->
+        <i class="fab fa-instagram fa-2x mx-2"></i>
+
+        <!-- Linkedin -->
+        <i class="fab fa-linkedin-in fa-2x mx-2"></i>
+
+        <!-- Pinterest -->
+        <i class="fab fa-pinterest fa-2x mx-2"></i>
+    </div>
+</footer>
+
+<!-- Asegúrate de tener FontAwesome cargado en tu proyecto -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
