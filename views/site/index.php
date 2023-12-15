@@ -38,7 +38,7 @@ use yii\widgets\LinkPager;
         <div class="card">
             <div class="card-body text-center">
                 <h4 class="card-title"><?= count($listaAlquiler) ?></h4>
-                <p class="card-text">Alquileres</p>
+                <p class="card-text">Total de Alquileres</p>
             </div>
         </div>
 
